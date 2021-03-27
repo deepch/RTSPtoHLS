@@ -2,10 +2,8 @@ module github.com/deepch/RTSPtoWSMP4f
 
 go 1.15
 
-replace github.com/deepch/vdk => /Users/deepweb/Desktop/work/src/github.com/deepch/vdk
-
 require (
-	github.com/deepch/vdk v0.0.0-20210209013919-981746cd6aa0
+	github.com/deepch/vdk v0.0.0-20210321174211-d6080d8287d7
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-playground/validator/v10 v10.4.1 // indirect
 	github.com/golang/protobuf v1.4.3 // indirect

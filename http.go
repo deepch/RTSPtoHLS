@@ -82,12 +82,12 @@ func PlayHLSTS(c *gin.Context) {
 	}
 	outfile := bytes.NewBuffer([]byte{})
 	Muxer := ts.NewMuxer(outfile)
-	Muxer.PaddingToMakeCounterCont = true
 	err := Muxer.WriteHeader(codecs)
 	if err != nil {
 		log.Println(err)
 		return
 	}
+	Muxer.PaddingToMakeCounterCont = true
 	seqData, err := Config.StreamHLSTS(c.Param("suuid"), stringToInt(c.Param("seq")))
 	if err != nil {
 		log.Println(err)

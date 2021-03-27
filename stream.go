@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/deepch/vdk/av"
-	"github.com/deepch/vdk/format/nvr"
 	"github.com/deepch/vdk/format/rtspv2"
 )
 
@@ -61,8 +60,6 @@ func RTSPWorker(name, url string, OnDemand bool) error {
 	if len(RTSPClient.CodecData) == 1 && RTSPClient.CodecData[0].Type().IsAudio() {
 		AudioOnly = true
 	}
-	MuxerNVR := nvr.NewMuxer(RTSPClient.CodecData, name, "nvr", 1*time.Second)
-	defer MuxerNVR.Close()
 	for {
 		select {
 		case <-clientTest.C:
@@ -75,7 +72,6 @@ func RTSPWorker(name, url string, OnDemand bool) error {
 			switch signals {
 			case rtspv2.SignalCodecUpdate:
 				Config.coAd(name, RTSPClient.CodecData)
-				MuxerNVR.CodecUpdate(RTSPClient.CodecData)
 			case rtspv2.SignalStreamRTPStop:
 				return ErrorStreamExitRtspDisconnect
 			}
